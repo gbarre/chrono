@@ -25,7 +25,7 @@ sudo apt dist-upgrade
 sudo apt install -y vim docker.io unclutter git hostapd dnsmasq
 
 # Récupération du projet
-git clone <url> ~/chrono
+git clone https://github.com/gbarre/chrono ~/chrono
 cd ~/chrono
 
 # Création du fichier de démarrage de l'affichage automatique
