@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Affichage Volée</title>
+    <link rel="stylesheet" href="/static/css/style_display.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div id="config-screen" class="menu-container">
+        <h1 style="text-align: center;">Réglages</h1>
+        <div class="setting-row" id="row-0"><div class="label">RYTHME</div><div class="value" id="val-sequence">-</div></div>
+        <div class="setting-row" id="row-1"><div class="label">MISE EN PLACE</div><div class="value" id="val-prep">-</div></div>
+        <div class="setting-row" id="row-2"><div class="label">TEMPS DE TIR</div><div class="value" id="val-shoot">-</div></div>
+        <div class="setting-row" id="row-3" style="justify-content:center; color:#28a745; font-weight:bold;">LANCER LA VOLÉE</div>
+    </div>
+
+    <div id="chrono-screen">
+        <div class="timer-section">
+            <div id="timer">--</div>
+            <div id="seq-display"><div id="active-marker"></div><div id="group-labels"></div></div>
+        </div>
+        <div class="lights-section">
+            <div id="light-red" class="light red"></div>
+            <div id="light-orange" class="light orange"></div>
+            <div id="light-green" class="light green"></div>
+        </div>
+    </div>
+    <script src="/static/js/logic_display.js"></script>
+</body>
+</html>

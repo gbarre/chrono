@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Télécommande</title>
+    <link rel="stylesheet" href="/static/css/style_remote.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div class="info-panel">
+        <div id="remote-status">RÉGLAGES</div>
+        <div id="remote-timer">--</div>
+    </div>
+    <div class="grid">
+        <button class="btn-mute" id="mute-btn" onclick="toggleAudio()">SON : ACTIVÉ 🔊</button>
+        <div></div><button class="btn" onclick="send('ArrowUp')">▲</button><div></div>
+        <div></div><button class="btn" onclick="send('ArrowDown')">▼</button><div></div>
+        <button class="btn btn-ok" onclick="send('b')">VALIDER / SUIVANT</button>
+        <button class="btn btn-esc" onclick="send('Escape')">RÀZ / MENU</button>
+    </div>
+    <script src="/static/js/logic_remote.js"></script>
+</body>
+</html>
