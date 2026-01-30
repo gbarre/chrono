@@ -103,11 +103,11 @@ L'interface est également accessible sur <http://chrono.local>
 
 ## Captures
 
-<div style="text-align:center">
+<p align="center">
   <img src="./img/reglages.png" width="600" alt="reglages" /><br />
   <img src="./img/remote.png" width="600" alt="remote" /><br />
   <img src="./img/chrono.png" width="600" alt="chrono" /><br />
-</div>
+</p>
 
 ## Licence
 
