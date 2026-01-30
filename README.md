@@ -35,7 +35,7 @@ git clone [https://github.com/gbarre/chrono](https://github.com/gbarre/chrono) ~
 cd ~/chrono
 ```
 
-### Configuration du Hotspot et de l'affichage
+### 2. Configuration du Hotspot et de l'affichage
 
 ```shell
 # Configuration réseau et WiFi
@@ -56,7 +56,7 @@ mkdir -p ~/.config/autostart
 cp configfiles/display.desktop ~/.config/autostart/display.desktop
 ```
 
-### Lancement de l'application
+### 3. Lancement de l'application
 
 ```shell
 sudo docker pull ghcr.io/gbarre/chrono:latest
