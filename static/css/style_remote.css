@@ -1,11 +1,85 @@
-body { background: #121212; color: white; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; margin: 0; padding: 10px; height: 100vh; box-sizing: border-box; }
-.info-panel { width: 100%; background: #222; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 15px; }
-#remote-timer { font-size: 3rem; font-weight: bold; color: #00ff00; margin: 10px 0; }
-#remote-status { font-size: 1rem; color: #aaa; text-transform: uppercase; }
+body {
+    background: #121212;
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 10px;
+    height: 100vh;
+    box-sizing: border-box;
+}
 
-.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; max-width: 400px; }
-.btn { background: #333; padding: 25px; border-radius: 15px; border: none; color: white; font-size: 1.5rem; font-weight: bold; touch-action: manipulation; }
-.btn:active { background: #555; }
-.btn-ok { background: #28a745; grid-column: span 3; padding: 35px; }
-.btn-mute { background: #444; grid-column: span 3; font-size: 1rem; padding: 15px; }
-.btn-esc { background: #dc3545; grid-column: span 3; font-size: 1rem; }
+.info-panel {
+    width: 100%;
+    background: #222;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#remote-timer {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00ff00;
+    margin: 10px 0;
+}
+
+#remote-status {
+    font-size: 1rem;
+    color: #aaa;
+    text-transform: uppercase;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.btn {
+    background: #333;
+    padding: 25px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    touch-action: manipulation;
+}
+
+.btn:active {
+    background: #555;
+}
+
+.btn-ok {
+    background: #28a745;
+    grid-column: span 3;
+    padding: 35px;
+}
+
+.btn-mute {
+    background: #444;
+    grid-column: span 3;
+    font-size: 1rem;
+    padding: 15px;
+}
+
+.btn-esc {
+    background: #dc3545;
+    grid-column: span 3;
+    font-size: 1rem;
+}
+
+.header-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header-logo img {
+    max-width: 100px;
+}
