@@ -9,6 +9,7 @@ import socket
 
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 # Configuration de l'application
 # Flask servira automatiquement les fichiers dans le dossier /static
@@ -17,19 +18,31 @@ app = Flask(__name__)
 # avec une valeur par défaut
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "tir_a_l_arc_secret")
 host = os.environ.get("HOST", "127.0.0.1")
-socketio = SocketIO(app, cors_allowed_origins="*")
+app.config['APPLICATION_ROOT'] = os.environ.get('BASE_URL', '')
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+socket_path = os.path.join(
+    app.config['APPLICATION_ROOT'],
+    'socket.io/',
+).replace('//', '/')
+socketio = SocketIO(app, cors_allowed_origins="*", path=socket_path)
 
 
 @app.route("/")
 def remote() -> str:
     """Route pour la télécommande sur smartphone."""
-    return render_template("remote.html")
+    return render_template(
+        "remote.html",
+        base_url=app.config['APPLICATION_ROOT'],
+    )
 
 
 @app.route("/display")
 def display() -> str:
     """Route pour l'écran d'affichage sur le Raspberry Pi."""
-    return render_template("display.html")
+    return render_template(
+        "display.html",
+        base_url=app.config['APPLICATION_ROOT'],
+    )
 
 # --- GESTION DES ÉVÉNEMENTS SOCKET.IO ---
 

@@ -1,4 +1,6 @@
-const socket = io();
+var socket = io({
+    path: window.location.pathname.replace(/\/$/, "") + "/socket.io"
+});
 const bipSound = new Audio('/static/sounds/bip.wav');
 let config = { sequence: "AB", prep: 10, shoot: 120 };
 let currentRow = 0, isRunning = false, currentGroup = 1;

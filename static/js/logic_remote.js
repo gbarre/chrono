@@ -1,4 +1,6 @@
-const socket = io();
+var socket = io({
+    path: window.location.pathname.replace(/\/$/, "") + "/socket.io"
+});
 let soundOn = true;
 
 function send(key) { socket.emit('command', { key: key }); }

@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Télécommande</title>
-    <link rel="stylesheet" href="/static/css/style_remote.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_remote.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 </head>
 <body>
     <div class="header-logo">
-        <img src="/static/img/logo.png" alt="Chrono-Tir">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Chrono-Tir">
     </div>
     <div class="info-panel">
         <div id="remote-status">RÉGLAGES</div>
@@ -22,6 +22,6 @@
         <button class="btn btn-ok" onclick="send('b')">VALIDER / SUIVANT</button>
         <button class="btn btn-esc" onclick="send('Escape')">RÀZ / MENU</button>
     </div>
-    <script src="/static/js/logic_remote.js"></script>
+    <script src="{{ url_for('static', filename='js/logic_remote.js') }}"></script>
 </body>
 </html>

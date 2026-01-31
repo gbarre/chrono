@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Affichage Volée</title>
-    <link rel="stylesheet" href="/static/css/style_display.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_display.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 </head>
 <body>
@@ -27,9 +27,9 @@
         </div>
     </div>
     <div class="qrcode-container">
-        <img src="/static/img/qrcode.png" alt="Scan me">
+        <img src="{{ url_for('static', filename='img/qrcode.png') }}" alt="Scan me">
         <div class="qrcode-text">Télécommande</div>
     </div>
-    <script src="/static/js/logic_display.js"></script>
+    <script src="{{ url_for('static', filename='js/logic_display.js') }}"></script>
 </body>
 </html>
