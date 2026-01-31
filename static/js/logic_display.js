@@ -1,5 +1,7 @@
+const baseIDPath = window.location.pathname.split('/').slice(0, 2).join('/') + '/';
+
 var socket = io({
-    path: window.location.pathname.replace(/\/$/, "") + "/socket.io"
+    path: baseIDPath + "socket.io"
 });
 const bipSound = new Audio('static/sounds/bip.wav');
 let config = { sequence: "AB", prep: 10, shoot: 120 };
