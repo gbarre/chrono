@@ -4,11 +4,18 @@ Ce module initialise un serveur Flask et SocketIO pour gérer la communication
 entre une télécommande (remote) et un écran d'affichage (display).
 """
 
+import base64
+import io
+import qrcode
 import os
 import socket
 
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
+
+
+INNTANCE = os.environ.get('INNTANCE')
+DEFAULT_URL = "http://chrono.local"
 
 # Configuration de l'application
 # Flask servira automatiquement les fichiers dans le dossier /static
@@ -18,6 +25,30 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "tir_a_l_arc_secret")
 host = os.environ.get("HOST", "127.0.0.1")
 socketio = SocketIO(app, cors_allowed_origins="*")
+
+
+@app.context_processor
+def inject_qrcode():
+    # Déterminer l'URL finale
+    if INNTANCE:
+        final_url = f"http://{INNTANCE}"
+    else:
+        final_url = DEFAULT_URL
+
+    # Génération du QR Code en mémoire (Base64)
+    qr = qrcode.QRCode(version=1, box_size=10, border=5)
+    qr.add_data(final_url)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="black", back_color="white")
+    buffered = io.BytesIO()
+    img.save(buffered, format="PNG")
+    img_str = base64.b64encode(buffered.getvalue()).decode()
+
+    return dict(
+        dynamic_qr=f"data:image/png;base64,{img_str}",
+        final_url=final_url,
+    )
 
 
 @app.route("/")
