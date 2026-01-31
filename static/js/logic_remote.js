@@ -1,6 +1,5 @@
-const currentPath = window.location.pathname;
-const socket = io({
-    path: currentPath + "socket.io"
+var socket = io({
+    path: window.location.pathname.replace(/\/$/, "") + "/socket.io"
 });
 let soundOn = true;
 

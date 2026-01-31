@@ -24,7 +24,7 @@ socket_path = os.path.join(
     app.config['APPLICATION_ROOT'],
     'socket.io/',
 ).replace('//', '/')
-socketio = SocketIO(app, cors_allowed_origins="*", path=socket_path)
+socketio = SocketIO(app, cors_allowed_origins="*", path="socket.io")
 
 
 @app.route("/")
