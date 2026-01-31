@@ -1,7 +1,8 @@
-var socket = io({
-    path: window.location.pathname.replace(/\/$/, "") + "/socket.io"
+const currentPath = window.location.pathname;
+const socket = io({
+    path: currentPath + "socket.io"
 });
-const bipSound = new Audio('/static/sounds/bip.wav');
+const bipSound = new Audio('static/sounds/bip.wav');
 let config = { sequence: "AB", prep: 10, shoot: 120 };
 let currentRow = 0, isRunning = false, currentGroup = 1;
 let isPausedBetweenVagues = false, isVagueTransition = false, currentInterval = null;
