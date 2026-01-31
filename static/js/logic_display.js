@@ -1,7 +1,11 @@
-const baseIDPath = window.location.pathname.split('/').slice(0, 2).join('/') + '/';
+let path = window.location.pathname;
+if (path.endsWith('display')) {
+    path = path.replace('display', '');
+}
+path = path.endsWith('/') ? path : path + '/';
 
 var socket = io({
-    path: baseIDPath + "socket.io"
+    path: path + "socket.io"
 });
 const bipSound = new Audio('static/sounds/bip.wav');
 let config = { sequence: "AB", prep: 10, shoot: 120 };

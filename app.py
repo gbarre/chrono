@@ -20,10 +20,6 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "tir_a_l_arc_secret")
 host = os.environ.get("HOST", "127.0.0.1")
 app.config['APPLICATION_ROOT'] = os.environ.get('BASE_URL', '')
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
-socket_path = os.path.join(
-    app.config['APPLICATION_ROOT'],
-    'socket.io/',
-).replace('//', '/')
 socketio = SocketIO(app, cors_allowed_origins="*", path="socket.io")
 
 
