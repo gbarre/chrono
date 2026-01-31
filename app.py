@@ -14,7 +14,7 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 
 
-INNTANCE = os.environ.get('INNTANCE')
+INSTANCE = os.environ.get('INSTANCE')
 DEFAULT_URL = "http://chrono.local"
 
 # Configuration de l'application
@@ -30,8 +30,8 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 @app.context_processor
 def inject_qrcode():
     # Déterminer l'URL finale
-    if INNTANCE:
-        final_url = f"http://{INNTANCE}"
+    if INSTANCE:
+        final_url = f"http://{INSTANCE}"
     else:
         final_url = DEFAULT_URL
 
