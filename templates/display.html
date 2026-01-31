@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Affichage Volée</title>
-    <link rel="stylesheet" href="static/css/style_display.css">
+    <link rel="stylesheet" href="/static/css/style_display.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-    <script>
-        document.write('<base href="' + window.location.pathname + (window.location.pathname.endsWith('/') ? '' : '/') + '">');
-    </script>
 </head>
 <body>
     <div id="config-screen" class="menu-container">
@@ -30,9 +27,9 @@
         </div>
     </div>
     <div class="qrcode-container">
-        <img src="static/img/qrcode.png" alt="Scan me">
+        <img src="/static/img/qrcode.png" alt="Scan me">
         <div class="qrcode-text">Télécommande</div>
     </div>
-    <script src="static/js/logic_display.js"></script>
+    <script src="/static/js/logic_display.js"></script>
 </body>
 </html>

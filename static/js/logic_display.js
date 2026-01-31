@@ -1,13 +1,5 @@
-let path = window.location.pathname;
-if (path.endsWith('display')) {
-    path = path.replace('display', '');
-}
-path = path.endsWith('/') ? path : path + '/';
-
-var socket = io({
-    path: path + "socket.io"
-});
-const bipSound = new Audio('static/sounds/bip.wav');
+const socket = io();
+const bipSound = new Audio('/static/sounds/bip.wav');
 let config = { sequence: "AB", prep: 10, shoot: 120 };
 let currentRow = 0, isRunning = false, currentGroup = 1;
 let isPausedBetweenVagues = false, isVagueTransition = false, currentInterval = null;
