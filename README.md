@@ -11,9 +11,16 @@ des conditions proches d'un tir en salle (FFTA). Il n'a pas pour objectif de
 remplacer le système [Chronotir](https://chronotir.fr/) ou
 [ArcheryClock](https://www.archeryclock.com/).
 
+## Tester la démo
+
+Une plateforme de démo est dispnible [ici](https://chrono.arcpontoise.fr:8443).
+Vous pouvez créer une instance et tester le chrono.
+
+**NB : toutes les instances sont supprimées la nuit.**
+
 ## Matériel nécessaire
 
-- Un Raspberry Pi 3 ou plus récent.
+- Une machine disposant de docker.
 - Un écran (TV ou moniteur).
 - Un smartphone ou une tablette (pour la télécommande).
 
@@ -24,45 +31,18 @@ remplacer le système [Chronotir](https://chronotir.fr/) ou
 Cette méthode utilise l'image pré-construite sur le registre GitHub pour une
 installation rapide et stable.
 
-### 1. Préparation et paquets
-
 ```shell
 sudo apt update && sudo apt dist-upgrade -y
-sudo apt install -y docker.io hostapd dnsmasq git avahi-daemon unclutter
+sudo apt install -y docker.io
 
-# Récupération des fichiers de configuration
-git clone [https://github.com/gbarre/chrono](https://github.com/gbarre/chrono) ~/chrono
-cd ~/chrono
-```
-
-### 2. Configuration du Hotspot et de l'affichage
-
-```shell
-# Configuration réseau et WiFi
-sudo cp configfiles/dhcpcd.conf /etc/dhcpcd.conf
-sudo mkdir -p /etc/network/interfaces.d
-sudo cp configfiles/wlan0 /etc/network/interfaces.d/wlan0
-sudo cp configfiles/hostapd.conf /etc/hostapd/hostapd.conf
-sudo cp configfiles/hostapd /etc/default/hostapd
-sudo cp configfiles/dnsmasq.conf /etc/dnsmasq.conf
-sudo cp configfiles/NetworkManager.conf /etc/NetworkManager/NetworkManager.conf
-
-# Activation des services
-sudo systemctl unmask hostapd
-sudo systemctl enable hostapd dnsmasq
-
-# Démarrage automatique de l'affichage (mode Kiosk)
-mkdir -p ~/.config/autostart
-cp configfiles/display.desktop ~/.config/autostart/display.desktop
-```
-
-### 3. Lancement de l'application
-
-```shell
 sudo docker pull ghcr.io/gbarre/chrono:latest
-sudo docker run -d --restart=unless-stopped -p 80:5000 -e HOST=0.0.0.0 --name chrono ghcr.io/gbarre/chrono:latest
-
-sudo reboot
+sudo docker run -d \
+  --restart=unless-stopped \
+  -p 80:5000 \
+  -e HOST=0.0.0.0 \
+  -e INSTANCE=10.42.0.1 \
+  --name chrono \
+  ghcr.io/gbarre/chrono:latest
 ```
 
 ## 🛠️ Section Développement (Build Local)
@@ -77,7 +57,11 @@ localement.
 sudo docker build -t chrono-dev .
 
 # Lancement en mode test (auto-supprimé après arrêt)
-sudo docker run -it --rm -p 80:5000 -e HOST=0.0.0.0 --name chrono-test chrono-dev
+sudo docker run -it \
+  --rm -p 80:5000 \
+  -e HOST=0.0.0.0 \
+  --name chrono-test \
+  chrono-dev
 ```
 
 ### Mise à jour manuelle (via sources)
@@ -87,19 +71,22 @@ cd ~/chrono
 git pull
 sudo docker build -t chrono .
 sudo docker stop chrono && sudo docker rm chrono
-sudo docker run -d --restart=unless-stopped -p 80:5000 -e HOST=0.0.0.0 --name chrono chrono
+sudo docker run -d \
+  --restart=unless-stopped \
+  -p 80:5000 \
+  -e HOST=0.0.0.0 \
+  --name chrono \
+  chrono
 ```
 
 ## 📱 Utilisation
 
-Connectez-vous au WiFi `CHRONO` (mot de passe par défaut : `secret_password`,
-défini dans le fichier
-[./configfiles/hostapd.conf](./configfiles/hostapd.conf)).
+Connectez-vous sur le même réseau que ceuli de la machine qui héberge la
+solution.
 
 Scannez le QR Code affiché en bas à gauche de l'écran TV.
 
-Réglez vos paramètres sur l'interface mobile et lancez le chrono ! Note :
-L'interface est également accessible sur <http://chrono.local>
+Réglez vos paramètres sur l'interface mobile et lancez le chrono !
 
 ## Captures
 

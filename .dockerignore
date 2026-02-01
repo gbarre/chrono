@@ -1,4 +1,4 @@
-configfiles/*
 img/*
 venv
 .ruff_cache
+vitrine/*
