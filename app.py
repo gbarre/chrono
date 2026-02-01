@@ -26,15 +26,15 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "tir_a_l_arc_secret")
 host = os.environ.get("HOST", "127.0.0.1")
 socketio = SocketIO(app, cors_allowed_origins="*")
 
+# Déterminer l'URL finale
+if INSTANCE:
+    final_url = f"http://{INSTANCE}"
+else:
+    final_url = DEFAULT_URL
+
 
 @app.context_processor
 def inject_qrcode():
-    # Déterminer l'URL finale
-    if INSTANCE:
-        final_url = f"http://{INSTANCE}"
-    else:
-        final_url = DEFAULT_URL
-
     # Génération du QR Code en mémoire (Base64)
     qr = qrcode.QRCode(version=1, box_size=10, border=5)
     qr.add_data(final_url)
@@ -99,8 +99,8 @@ if __name__ == "__main__":
     app.logger.info("\n%s", "="*30)
     app.logger.info("🏹 SYSTÈME DE TIR ARCHERIE")
     app.logger.info("="*30)
-    app.logger.info("🖥️  AFFICHAGE : http://%s:5000/display", local_ip)
-    app.logger.info("📱 REMOTE    : http://%s:5000/", local_ip)
+    app.logger.info("🖥️  AFFICHAGE : %s/display", final_url)
+    app.logger.info("📱 REMOTE    : %s/", final_url)
     app.logger.info("%s\n", "="*30)
 
     # Lancement du serveur
