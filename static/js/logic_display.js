@@ -131,7 +131,7 @@ function forceNextStep() {
 socket.on('ui_update', (data) => {
     if (isRunning) {
         // --- NOUVEAU : Correction manuelle du groupe pendant le tir ---
-        if (data.key === 'ArrowUp' || data.key === 'ArrowDown') {
+        if (data.key === 'ArrowLeft' || data.key === 'ArrowRight') {
             if (config.sequence === "AB/CD") {
                 currentGroup = (currentGroup === 1) ? 2 : 1;
                 updateSequenceDisplay();
@@ -151,8 +151,8 @@ socket.on('ui_update', (data) => {
     }
 
     // Logique du menu (inchangée)
-    if (data.key === 'ArrowUp') modifyValue(-1);
-    else if (data.key === 'ArrowDown') modifyValue(1);
+    if (data.key === 'ArrowLeft') modifyValue(1);
+    else if (data.key === 'ArrowRight') modifyValue(-1);
     else if (data.key === 'b') {
         if (currentRow === 3) startCycle(); else { currentRow++; updateUI(); }
     }

@@ -39,8 +39,7 @@ sudo docker pull ghcr.io/gbarre/chrono:latest
 sudo docker run -d \
   --restart=unless-stopped \
   -p 80:5000 \
-  -e HOST=0.0.0.0 \
-  -e INSTANCE=10.42.0.1 \
+  -e INSTANCE=http(s)://<votre_ip|votre_fqdn> \
   --name chrono \
   ghcr.io/gbarre/chrono:latest
 ```
@@ -59,7 +58,7 @@ sudo docker build -t chrono-dev .
 # Lancement en mode test (auto-supprimé après arrêt)
 sudo docker run -it \
   --rm -p 80:5000 \
-  -e HOST=0.0.0.0 \
+  -e INSTANCE=http(s)://<votre_ip|votre_fqdn> \
   --name chrono-test \
   chrono-dev
 ```
@@ -74,7 +73,7 @@ sudo docker stop chrono && sudo docker rm chrono
 sudo docker run -d \
   --restart=unless-stopped \
   -p 80:5000 \
-  -e HOST=0.0.0.0 \
+  -e INSTANCE=http(s)://<votre_ip|votre_fqdn> \
   --name chrono \
   chrono
 ```

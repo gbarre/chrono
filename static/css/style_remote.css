@@ -34,11 +34,22 @@ body {
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 10px;
     width: 100%;
     max-width: 400px;
+    align-items: center;
+}
+
+.grid > button {
+    width: 100%;
+}
+
+.grid > div {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 }
 
 .btn {
@@ -58,21 +69,22 @@ body {
 
 .btn-ok {
     background: #28a745;
-    grid-column: span 3;
     padding: 35px;
 }
 
 .btn-mute {
     background: #444;
-    grid-column: span 3;
     font-size: 1rem;
     padding: 15px;
 }
 
 .btn-esc {
     background: #dc3545;
-    grid-column: span 3;
     font-size: 1rem;
+}
+
+.ml-50 {
+    margin-left: 50px;
 }
 
 .header-logo {
